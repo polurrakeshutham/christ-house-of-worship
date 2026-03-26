@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Member Portal — Christ House of Worship</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --royal: #1A3D8F;
+      --royal-dark: #0F2660;
+      --royal-light: #2a5fd4;
+      --gold: #D4A017;
+      --gold-light: #f0c040;
+      --white: #FFFFFF;
+      --bg: #F0F3FA;
+      --surface: #FFFFFF;
+      --teal: #0D7A7A;
+      --text: #1a1a2e;
+      --muted: #6b7280;
+      --border: #e5e9f2;
+      --danger: #e53e3e;
+      --success: #38a169;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      width: 240px;
+      background: var(--royal-dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+    }
+    .sidebar-logo {
+      padding: 28px 20px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .sidebar-logo-cross {
+      width: 28px; height: 28px;
+      background: var(--gold);
+      clip-path: polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%);
+      margin-bottom: 10px;
+    }
+    .sidebar-logo-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      color: var(--white);
+      line-height: 1.3;
+    }
+    .sidebar-logo-sub {
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+    .sidebar-nav {
+      flex: 1;
+      padding: 20px 0;
+    }
+    .nav-section-label {
+      padding: 8px 20px 4px;
+      font-size: 0.62rem;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 20px;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      border-left: 3px solid transparent;
+      text-decoration: none;
+    }
+    .nav-item:hover {
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.9);
+    }
+    .nav-item.active {
+      background: rgba(212,160,23,0.12);
+      color: var(--gold);
+      border-left-color: var(--gold);
+    }
+    .nav-icon { font-size: 1rem; width: 20px; text-align: center; }
+    .sidebar-footer {
+      padding: 16px 20px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .user-chip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .user-avatar {
+      width: 34px; height: 34px;
+      background: linear-gradient(135deg, var(--teal), var(--royal-light));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+    .user-name {
+      font-size: 0.82rem;
+      color: var(--white);
+      font-weight: 500;
+    }
+    .user-role {
+      font-size: 0.68rem;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── MAIN ── */
+    .main {
+      margin-left: 240px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .topbar h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--text);
+    }
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 14px;
+      width: 240px;
+    }
+    .search-box input {
+      background: none;
+      border: none;
+      outline: none;
+      font-size: 0.85rem;
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      width: 100%;
+    }
+    .search-icon { color: var(--muted); font-size: 0.9rem; }
+    .btn-add {
+      background: var(--royal);
+      color: white;
+      border: none;
+      padding: 9px 20px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-add:hover { background: var(--royal-light); }
+    .btn-export {
+      background: none;
+      border: 1.5px solid var(--border);
+      color: var(--muted);
+      padding: 9px 16px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+      transition: all 0.2s;
+    }
+    .btn-export:hover { border-color: var(--royal); color: var(--royal); }
+
+    /* ── CONTENT ── */
+    .content {
+      padding: 32px;
+      flex: 1;
+    }
+
+    /* ── STAT CARDS ── */
+    .stat-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+    .stat-card {
+      background: var(--white);
+      border-radius: 8px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .stat-card.blue::before { background: var(--royal); }
+    .stat-card.gold::before { background: var(--gold); }
+    .stat-card.teal::before { background: var(--teal); }
+    .stat-card.green::before { background: var(--success); }
+    .stat-label-top {
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .stat-num-big {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-change {
+      font-size: 0.75rem;
+      color: var(--success);
+    }
+
+    /* ── FILTERS ── */
+    .filters {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      color: var(--muted);
+      font-family: 'Outfit', sans-serif;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover { border-color: var(--royal); color: var(--royal); }
+    .filter-btn.active {
+      background: var(--royal);
+      color: white;
+      border-color: var(--royal);
+    }
+
+    /* ── TABLE ── */
+    .table-wrap {
+      background: var(--white);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .table-head-row {
+      display: grid;
+      grid-template-columns: 40px 2.5fr 1fr 1.2fr 1fr 1fr 80px;
+      gap: 16px;
+      padding: 12px 20px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .table-row {
+      display: grid;
+      grid-template-columns: 40px 2.5fr 1fr 1.2fr 1fr 1fr 80px;
+      gap: 16px;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+      transition: background 0.15s;
+      cursor: pointer;
+    }
+    .table-row:last-child { border-bottom: none; }
+    .table-row:hover { background: #f8f9fe; }
+    .member-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+    .av1 { background: linear-gradient(135deg, #1A3D8F, #2a5fd4); }
+    .av2 { background: linear-gradient(135deg, #0D7A7A, #0fa8a8); }
+    .av3 { background: linear-gradient(135deg, #7C3AED, #a855f7); }
+    .av4 { background: linear-gradient(135deg, #B8860B, #D4A017); }
+    .av5 { background: linear-gradient(135deg, #047857, #10b981); }
+    .av6 { background: linear-gradient(135deg, #b91c1c, #ef4444); }
+    .member-name {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .member-id {
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+    .cell {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+    .b-active { background: rgba(56,161,105,0.12); color: #2d8a57; }
+    .b-new { background: rgba(212,160,23,0.15); color: #a07810; }
+    .b-inactive { background: rgba(107,114,128,0.1); color: #6b7280; }
+    .b-youth { background: rgba(124,58,237,0.1); color: #7C3AED; }
+    .actions-cell {
+      display: flex;
+      gap: 6px;
+    }
+    .act-btn {
+      width: 28px; height: 28px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: none;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem;
+      transition: all 0.15s;
+      color: var(--muted);
+    }
+    .act-btn:hover { background: var(--royal); color: white; border-color: var(--royal); }
+
+    /* ── SIDE PANEL (member detail mockup) ── */
+    .detail-panel {
+      background: var(--white);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      margin-top: 24px;
+      overflow: hidden;
+    }
+    .panel-header {
+      background: linear-gradient(135deg, var(--royal-dark) 0%, var(--royal) 100%);
+      padding: 28px 24px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .panel-avatar {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal), var(--royal-light));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: white;
+      border: 3px solid rgba(212,160,23,0.5);
+      flex-shrink: 0;
+    }
+    .panel-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: white;
+    }
+    .panel-role {
+      font-size: 0.75rem;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+    .panel-id {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.4);
+      margin-top: 2px;
+    }
+    .panel-body {
+      padding: 24px;
+    }
+    .field-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .field-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .field-value {
+      font-size: 0.88rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+    .panel-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 20px 0;
+    }
+    .panel-section-title {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .ministry-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .ministry-tag {
+      background: rgba(26,61,143,0.08);
+      color: var(--royal);
+      padding: 4px 12px;
+      border-radius: 3px;
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .timeline-item {
+      display: flex;
+      gap: 14px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+    }
+    .timeline-item:last-child { border-bottom: none; }
+    .timeline-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .timeline-text {
+      font-size: 0.82rem;
+      color: var(--text);
+    }
+    .timeline-date {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 1px;
+    }
+
+    /* ── UPCOMING BIRTHDAYS ── */
+    .side-widgets {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 24px;
+    }
+    .widget {
+      background: var(--white);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      padding: 20px;
+    }
+    .widget-title {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .widget-title a {
+      color: var(--royal);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .bday-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.82rem;
+    }
+    .bday-item:last-child { border-bottom: none; }
+    .bday-name { font-weight: 500; color: var(--text); }
+    .bday-date {
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+    .bday-chip {
+      background: rgba(212,160,23,0.15);
+      color: #a07810;
+      font-size: 0.65rem;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+    .baptism-item {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .baptism-item:last-child { border-bottom: none; }
+    .baptism-name { font-size: 0.82rem; font-weight: 500; color: var(--text); }
+    .baptism-year { font-size: 0.72rem; color: var(--teal); font-weight: 600; }
+    .baptism-years-ago { font-size: 0.7rem; color: var(--muted); }
+
+    /* ── LOGIN PAGE ── */
+    .login-overlay {
+      position: fixed; inset: 0;
+      background: linear-gradient(135deg, var(--royal-dark) 0%, #091830 60%, var(--teal) 100%);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 999;
+    }
+    .login-card {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 48px 44px;
+      width: 380px;
+      text-align: center;
+    }
+    .login-cross {
+      width: 44px; height: 44px;
+      background: var(--gold);
+      clip-path: polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%);
+      margin: 0 auto 16px;
+    }
+    .login-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .login-sub {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 32px;
+      letter-spacing: 0.06em;
+    }
+    .form-group {
+      margin-bottom: 16px;
+      text-align: left;
+    }
+    .form-label {
+      display: block;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .form-input {
+      width: 100%;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 6px;
+      padding: 11px 14px;
+      color: var(--white);
+      font-size: 0.88rem;
+      font-family: 'Outfit', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus { border-color: var(--gold); }
+    .form-input::placeholder { color: rgba(255,255,255,0.25); }
+    .login-btn {
+      width: 100%;
+      background: var(--gold);
+      color: var(--royal-dark);
+      border: none;
+      padding: 13px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      font-family: 'Outfit', sans-serif;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s;
+      letter-spacing: 0.04em;
+    }
+    .login-btn:hover { background: var(--gold-light); }
+    .login-footer {
+      margin-top: 24px;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.3);
+    }
+    .access-roles {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+      justify-content: center;
+    }
+    .role-chip {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.5);
+      font-size: 0.68rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.06em;
+    }
+    .role-chip.highlight {
+      background: rgba(212,160,23,0.15);
+      border-color: rgba(212,160,23,0.3);
+      color: var(--gold);
+    }
+
+    /* ── PAGE TABS ── */
+    .page-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 24px;
+    }
+    .page-tab {
+      padding: 10px 24px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: all 0.2s;
+    }
+    .page-tab.active {
+      color: var(--royal);
+      border-bottom-color: var(--royal);
+    }
+    .page-tab:hover { color: var(--royal); }
+
+    .back-link {
+      color: var(--royal);
+      text-decoration: none;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+    .back-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<!-- LOGIN OVERLAY (Design spec — shows on load, dismiss to see portal) -->
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-card">
+    <div class="login-cross"></div>
+    <div class="login-title">Member Portal</div>
+    <div class="login-sub">CHRIST HOUSE OF WORSHIP · ONGOLE</div>
+    <div class="form-group">
+      <label class="form-label">Username</label>
+      <input class="form-input" type="text" placeholder="pastor@chow.org" />
+    </div>
+    <div class="form-group">
+      <label class="form-label">Password</label>
+      <input class="form-input" type="password" placeholder="••••••••" />
+    </div>
+    <button class="login-btn" onclick="document.getElementById('loginOverlay').style.display='none'">
+      Sign In →
+    </button>
+    <div class="access-roles">
+      <div class="role-chip highlight">Pastor</div>
+      <div class="role-chip">Admin</div>
+      <div class="role-chip">Member</div>
+    </div>
+    <div class="login-footer">Click "Sign In" to preview the portal design</div>
+  </div>
+</div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="sidebar-logo-cross"></div>
+    <div class="sidebar-logo-name">Christ House of Worship</div>
+    <div class="sidebar-logo-sub">Member Portal</div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Overview</div>
+    <a href="#" class="nav-item active"><span class="nav-icon">🏠</span> Dashboard</a>
+    <a href="#" class="nav-item"><span class="nav-icon">📊</span> Reports</a>
+
+    <div class="nav-section-label">Congregation</div>
+    <a href="#" class="nav-item"><span class="nav-icon">👥</span> All Members</a>
+    <a href="#" class="nav-item"><span class="nav-icon">➕</span> Add Member</a>
+    <a href="#" class="nav-item"><span class="nav-icon">💧</span> Baptism Records</a>
+    <a href="#" class="nav-item"><span class="nav-icon">📋</span> Attendance</a>
+
+    <div class="nav-section-label">Ministries</div>
+    <a href="#" class="nav-item"><span class="nav-icon">🙏</span> Worship Team</a>
+    <a href="#" class="nav-item"><span class="nav-icon">🌿</span> Youth Group</a>
+    <a href="#" class="nav-item"><span class="nav-icon">🕊️</span> Women's Fellowship</a>
+
+    <div class="nav-section-label">Events</div>
+    <a href="#" class="nav-item"><span class="nav-icon">📅</span> Upcoming Events</a>
+    <a href="#" class="nav-item"><span class="nav-icon">🎂</span> Birthdays</a>
+
+    <div class="nav-section-label">Settings</div>
+    <a href="#" class="nav-item"><span class="nav-icon">⚙️</span> Church Settings</a>
+    <a href="#" class="nav-item"><span class="nav-icon">🔒</span> Access Control</a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="user-chip">
+      <div class="user-avatar">PJ</div>
+      <div>
+        <div class="user-name">Patra John Calvin</div>
+        <div class="user-role">Senior Pastor</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <a href="index.html" class="back-link" style="margin:0">← Back to Website</a>
+      <h1>Congregation Dashboard</h1>
+    </div>
+    <div class="topbar-right">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" placeholder="Search members..." />
+      </div>
+      <button class="btn-export">Export ↓</button>
+      <button class="btn-add">+ Add Member</button>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- PAGE TABS -->
+    <div class="page-tabs">
+      <div class="page-tab active">All Members</div>
+      <div class="page-tab">Baptism Records</div>
+      <div class="page-tab">Birthdays</div>
+      <div class="page-tab">Ministries</div>
+      <div class="page-tab">Reports</div>
+    </div>
+
+    <!-- STAT CARDS -->
+    <div class="stat-cards">
+      <div class="stat-card blue">
+        <div class="stat-label-top">Total Members</div>
+        <div class="stat-num-big">48</div>
+        <div class="stat-change">↑ 4 this quarter</div>
+      </div>
+      <div class="stat-card gold">
+        <div class="stat-label-top">Baptized Members</div>
+        <div class="stat-num-big">36</div>
+        <div class="stat-change">75% of congregation</div>
+      </div>
+      <div class="stat-card teal">
+        <div class="stat-label-top">Birthdays This Month</div>
+        <div class="stat-num-big">5</div>
+        <div class="stat-change">Next: April 3rd</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-label-top">Active Ministries</div>
+        <div class="stat-num-big">6</div>
+        <div class="stat-change">All departments active</div>
+      </div>
+    </div>
+
+    <!-- FILTERS -->
+    <div class="filters">
+      <button class="filter-btn active">All Members (48)</button>
+      <button class="filter-btn">Active (41)</button>
+      <button class="filter-btn">New Members (7)</button>
+      <button class="filter-btn">Youth (12)</button>
+      <button class="filter-btn">Women's Fellowship (15)</button>
+      <button class="filter-btn">Baptized (36)</button>
+    </div>
+
+    <!-- MEMBER TABLE -->
+    <div class="table-wrap">
+      <div class="table-head-row">
+        <span>#</span>
+        <span>Member</span>
+        <span>Status</span>
+        <span>Date of Baptism</span>
+        <span>Date of Birth</span>
+        <span>Ministry</span>
+        <span>Actions</span>
+      </div>
+
+      <div class="table-row">
+        <span style="font-size:0.8rem;color:var(--muted)">001</span>
+        <div class="member-info">
+          <div class="avatar av1">RK</div>
+          <div>
+            <div class="member-name">Ravi Kumar Reddy</div>
+            <div class="member-id">📞 98765 43210 · Cloughpet</div>
+          </div>
+        </div>
+        <span class="badge b-active">Active</span>
+        <span class="cell">14 Apr 2018</span>
+        <span class="cell">03 Jul 1990</span>
+        <span class="cell">Worship Team</span>
+        <div class="actions-cell"><button class="act-btn">👁</button><button class="act-btn">✏️</button></div>
+      </div>
+
+      <div class="table-row">
+        <span style="font-size:0.8rem;color:var(--muted)">002</span>
+        <div class="member-info">
+          <div class="avatar av2">SP</div>
+          <div>
+            <div class="member-name">Sunita Prasad</div>
+            <div class="member-id">📞 87654 32109 · Ongole</div>
+          </div>
+        </div>
+        <span class="badge b-active">Active</span>
+        <span class="cell">22 Dec 2019</span>
+        <span class="cell">15 Mar 1985</span>
+        <span class="cell">Women's Fellowship</span>
+        <div class="actions-cell"><button class="act-btn">👁</button><button class="act-btn">✏️</button></div>
+      </div>
+
+      <div class="table-row">
+        <span style="font-size:0.8rem;color:var(--muted)">003</span>
+        <div class="member-info">
+          <div class="avatar av3">JM</div>
+          <div>
+            <div class="member-name">James Matthew</div>
+            <div class="member-id">📞 76543 21098 · Ongole</div>
+          </div>
+        </div>
+        <span class="badge b-new">New Member</span>
+        <span class="cell">08 Jan 2024</span>
+        <span class="cell">21 Sep 2001</span>
+        <span class="cell">Youth Group</span>
+        <div class="actions-cell"><button class="act-btn">👁</button><button class="act-btn">✏️</button></div>
+      </div>
+
+      <div class="table-row">
+        <span style="font-size:0.8rem;color:var(--muted)">004</span>
+        <div class="member-info">
+          <div class="avatar av4">PL</div>
+          <div>
+            <div class="member-name">Priya Laxmi Naidu</div>
+            <div class="member-id">📞 65432 10987 · Cloughpet</div>
+          </div>
+        </div>
+        <span class="badge b-active">Active</span>
+        <span class="cell">30 Jun 2020</span>
+        <span class="cell">12 Nov 1993</span>
+        <span class="cell">Prayer Ministry</span>
+        <div class="actions-cell"><button class="act-btn">👁</button><button class="act-btn">✏️</button></div>
+      </div>
+
+      <div class="table-row">
+        <span style="font-size:0.8rem;color:var(--muted)">005</span>
+        <div class="member-info">
+          <div class="avatar av5">SR</div>
+          <div>
+            <div class="member-name">Samuel Raju</div>
+            <div class="member-id">📞 54321 09876 · Ongole</div>
+          </div>
+        </div>
+        <span class="badge b-youth">Youth</span>
+        <span class="cell">25 Aug 2022</span>
+        <span class="cell">05 Feb 2005</span>
+        <span class="cell">Youth Group</span>
+        <div class="actions-cell"><button class="act-btn">👁</button><button class="act-btn">✏️</button></div>
+      </div>
+
+      <div class="table-row">
+        <span style="font-size:0.8rem;color:var(--muted)">006</span>
+        <div class="member-info">
+          <div class="avatar av6">AR</div>
+          <div>
+            <div class="member-name">Asha Rani</div>
+            <div class="member-id">📞 43210 98765 · Cloughpet</div>
+          </div>
+        </div>
+        <span class="badge b-active">Active</span>
+        <span class="cell">17 May 2016</span>
+        <span class="cell">28 Aug 1978</span>
+        <span class="cell">Outreach</span>
+        <div class="actions-cell"><button class="act-btn">👁</button><button class="act-btn">✏️</button></div>
+      </div>
+
+      <div style="padding:12px 20px;font-size:0.75rem;color:var(--muted);background:var(--bg);text-align:center;letter-spacing:0.06em;">
+        SHOWING 6 OF 48 MEMBERS · <span style="color:var(--royal);cursor:pointer;font-weight:600;">View All</span>
+      </div>
+    </div>
+
+    <!-- MEMBER DETAIL + WIDGETS -->
+    <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:20px;margin-top:24px;">
+
+      <!-- MEMBER DETAIL CARD -->
+      <div class="detail-panel">
+        <div class="panel-header">
+          <div class="panel-avatar">RK</div>
+          <div>
+            <div class="panel-name">Ravi Kumar Reddy</div>
+            <div class="panel-role">Active Member · Worship Team</div>
+            <div class="panel-id">Member ID: CHOW-2018-001</div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="field-grid">
+            <div class="field-group">
+              <div class="field-label">Date of Birth</div>
+              <div class="field-value">03 July 1990 (34 yrs)</div>
+            </div>
+            <div class="field-group">
+              <div class="field-label">Baptism Date</div>
+              <div class="field-value">14 April 2018</div>
+            </div>
+            <div class="field-group">
+              <div class="field-label">Phone</div>
+              <div class="field-value">+91 98765 43210</div>
+            </div>
+            <div class="field-group">
+              <div class="field-label">Email</div>
+              <div class="field-value">ravi.kumar@email.com</div>
+            </div>
+            <div class="field-group">
+              <div class="field-label">Address</div>
+              <div class="field-value">14-2 Cloughpet, Ongole — 523001</div>
+            </div>
+            <div class="field-group">
+              <div class="field-label">Occupation</div>
+              <div class="field-value">School Teacher</div>
+            </div>
+            <div class="field-group">
+              <div class="field-label">Marital Status</div>
+              <div class="field-value">Married · Spouse: Kavitha</div>
+            </div>
+            <div class="field-group">
+              <div class="field-label">Children</div>
+              <div class="field-value">Abigail (8), Nathan (5)</div>
+            </div>
+          </div>
+          <hr class="panel-divider" />
+          <div class="panel-section-title">Ministry Involvement</div>
+          <div class="ministry-tags">
+            <span class="ministry-tag">Worship Team</span>
+            <span class="ministry-tag">Prayer Ministry</span>
+            <span class="ministry-tag">Men's Fellowship</span>
+          </div>
+          <hr class="panel-divider" />
+          <div class="panel-section-title">Key Milestones</div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div>
+                <div class="timeline-text">Joined Church — Annavarapadu</div>
+                <div class="timeline-date">January 2017</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div>
+                <div class="timeline-text">Completed Membership Class</div>
+                <div class="timeline-date">March 2018</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div>
+                <div class="timeline-text">Baptized by Pastor Patra John Calvin</div>
+                <div class="timeline-date">14 April 2018</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div>
+                <div class="timeline-text">Joined Worship Team Leadership</div>
+                <div class="timeline-date">June 2022</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIDE WIDGETS -->
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <!-- Upcoming Birthdays -->
+        <div class="widget">
+          <div class="widget-title">
+            <span>🎂 Upcoming Birthdays</span>
+            <a href="#">See All</a>
+          </div>
+          <div class="bday-item">
+            <div><div class="bday-name">Sunita Prasad</div><div class="bday-date">15 March</div></div>
+            <span class="bday-chip">In 6 days</span>
+          </div>
+          <div class="bday-item">
+            <div><div class="bday-name">Thomas Jacob</div><div class="bday-date">22 March</div></div>
+            <span class="bday-chip">In 13 days</span>
+          </div>
+          <div class="bday-item">
+            <div><div class="bday-name">Grace Mercy</div><div class="bday-date">2 April</div></div>
+            <span class="bday-chip">In 24 days</span>
+          </div>
+          <div class="bday-item">
+            <div><div class="bday-name">Samuel Raju</div><div class="bday-date">5 April</div></div>
+            <span class="bday-chip">In 27 days</span>
+          </div>
+        </div>
+
+        <!-- Baptism Anniversaries -->
+        <div class="widget">
+          <div class="widget-title">
+            <span>💧 Baptism Anniversaries</span>
+            <a href="#">Records</a>
+          </div>
+          <div class="baptism-item">
+            <div style="flex:1">
+              <div class="baptism-name">Asha Rani</div>
+              <div class="baptism-years-ago">Baptized: 17 May 2016</div>
+            </div>
+            <div class="baptism-year">9 yrs</div>
+          </div>
+          <div class="baptism-item">
+            <div style="flex:1">
+              <div class="baptism-name">Ravi Kumar</div>
+              <div class="baptism-years-ago">Baptized: 14 Apr 2018</div>
+            </div>
+            <div class="baptism-year">7 yrs</div>
+          </div>
+          <div class="baptism-item">
+            <div style="flex:1">
+              <div class="baptism-name">Sunita Prasad</div>
+              <div class="baptism-years-ago">Baptized: 22 Dec 2019</div>
+            </div>
+            <div class="baptism-year">5 yrs</div>
+          </div>
+          <div class="baptism-item">
+            <div style="flex:1">
+              <div class="baptism-name">Priya Laxmi</div>
+              <div class="baptism-years-ago">Baptized: 30 Jun 2020</div>
+            </div>
+            <div class="baptism-year">4 yrs</div>
+          </div>
+        </div>
+
+        <!-- Access Levels Info -->
+        <div class="widget">
+          <div class="widget-title"><span>🔒 Access Levels</span></div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;justify-content:space-between;font-size:0.82rem;padding:8px;background:rgba(212,160,23,0.08);border-radius:4px;">
+              <span style="font-weight:600;color:var(--text)">Pastor</span>
+              <span style="color:var(--muted);font-size:0.75rem">Full access · all data</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.82rem;padding:8px;background:rgba(26,61,143,0.06);border-radius:4px;">
+              <span style="font-weight:600;color:var(--text)">Admin / Secretary</span>
+              <span style="color:var(--muted);font-size:0.75rem">Data entry · reports</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.82rem;padding:8px;background:rgba(107,114,128,0.06);border-radius:4px;">
+              <span style="font-weight:600;color:var(--text)">Member</span>
+              <span style="color:var(--muted);font-size:0.75rem">Own profile only</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+</body>
+</html>

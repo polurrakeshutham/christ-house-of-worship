@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Christ House of Worship — Ongole</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --royal: #1A3D8F;
+      --royal-dark: #0F2660;
+      --royal-light: #2a5fd4;
+      --gold: #D4A017;
+      --gold-light: #f0c040;
+      --white: #FFFFFF;
+      --off-white: #F7F8FC;
+      --grey: #E8E8EE;
+      --teal: #0D7A7A;
+      --teal-light: #0fa8a8;
+      --text: #1a1a2e;
+      --muted: #5a6070;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10, 20, 60, 0.97);
+      backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 68px;
+      border-bottom: 1px solid rgba(212,160,23,0.2);
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo .cross-icon {
+      width: 32px; height: 32px;
+      background: var(--gold);
+      clip-path: polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%);
+    }
+    .nav-logo span {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--white);
+      line-height: 1.2;
+    }
+    .nav-logo span em {
+      display: block;
+      font-style: normal;
+      color: var(--gold);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.8);
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-btn {
+      background: var(--gold);
+      color: var(--royal-dark) !important;
+      padding: 8px 20px;
+      border-radius: 4px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+    .nav-btn:hover { background: var(--gold-light) !important; color: var(--royal-dark) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(160deg, rgba(10,20,70,0.92) 0%, rgba(13,122,122,0.7) 100%),
+        url('https://images.unsplash.com/photo-1548625149-720754130a9c?w=1600&q=80') center/cover no-repeat;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 5% 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, rgba(212,160,23,0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-cross {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px; height: 600px;
+      background: rgba(212,160,23,0.04);
+      clip-path: polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 780px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      border: 1px solid rgba(212,160,23,0.5);
+      color: var(--gold);
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 2px;
+      margin-bottom: 28px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.05;
+      margin-bottom: 10px;
+      animation: fadeUp 0.9s ease 0.1s both;
+    }
+
+    .hero h1 span { color: var(--gold); }
+
+    .hero-sub {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 20px;
+      animation: fadeUp 0.9s ease 0.2s both;
+    }
+
+    .hero-verse {
+      color: rgba(255,255,255,0.55);
+      font-size: 0.9rem;
+      letter-spacing: 0.03em;
+      margin-bottom: 48px;
+      animation: fadeUp 0.9s ease 0.3s both;
+    }
+
+    .hero-actions {
+      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+      animation: fadeUp 0.9s ease 0.4s both;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--royal-dark);
+      padding: 14px 36px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: all 0.25s;
+      display: inline-block;
+    }
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(212,160,23,0.35);
+    }
+
+    .btn-outline {
+      border: 1.5px solid rgba(255,255,255,0.4);
+      color: var(--white);
+      padding: 14px 36px;
+      border-radius: 4px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: all 0.25s;
+      display: inline-block;
+    }
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .hero-stats {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: rgba(10,20,60,0.85);
+      backdrop-filter: blur(8px);
+      display: flex; justify-content: center; gap: 0;
+      border-top: 1px solid rgba(212,160,23,0.2);
+    }
+    .stat-item {
+      padding: 20px 48px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .stat-label {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* ── SERVICE TIMES ── */
+    .service-times {
+      background: var(--royal);
+      padding: 64px 5%;
+      text-align: center;
+    }
+    .section-tag {
+      display: inline-block;
+      color: var(--gold);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .service-times h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--white);
+      font-size: 2rem;
+      margin-bottom: 48px;
+    }
+    .times-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .time-card {
+      background: rgba(255,255,255,0.06);
+      padding: 32px 24px;
+      border-top: 3px solid var(--gold);
+      transition: background 0.2s;
+    }
+    .time-card:hover { background: rgba(255,255,255,0.1); }
+    .time-day {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .time-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .time-hour {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      padding: 100px 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-img-main {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background:
+        linear-gradient(135deg, var(--royal) 0%, var(--teal) 100%);
+      border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .about-img-main img {
+      width: 100%; height: 100%; object-fit: cover; opacity: 0.85;
+    }
+    .about-badge-box {
+      position: absolute;
+      bottom: -24px; right: -24px;
+      background: var(--gold);
+      padding: 24px 28px;
+      text-align: center;
+    }
+    .about-badge-box .yr {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--royal-dark);
+      line-height: 1;
+    }
+    .about-badge-box .yr-label {
+      font-size: 0.7rem;
+      color: var(--royal-dark);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+    .about-content { padding-right: 20px; }
+    .about-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      color: var(--royal-dark);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .about-content h2 em {
+      font-style: italic;
+      color: var(--teal);
+    }
+    .about-content p {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 1rem;
+      margin-bottom: 16px;
+    }
+    .about-milestones {
+      margin-top: 32px;
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .milestone {
+      display: flex; gap: 20px; align-items: flex-start;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--grey);
+    }
+    .milestone:last-child { border-bottom: none; }
+    .milestone-year {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--gold);
+      min-width: 60px;
+    }
+    .milestone-text {
+      font-size: 0.9rem;
+      color: var(--muted);
+      padding-top: 4px;
+      line-height: 1.6;
+    }
+
+    /* ── PASTOR ── */
+    .pastor-section {
+      background: linear-gradient(135deg, var(--royal-dark) 0%, #0a2040 100%);
+      padding: 100px 5%;
+      position: relative;
+      overflow: hidden;
+    }
+    .pastor-section::before {
+      content: '"';
+      position: absolute;
+      top: -40px; left: 3%;
+      font-family: 'Playfair Display', serif;
+      font-size: 20rem;
+      color: rgba(212,160,23,0.06);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .pastor-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .pastor-photo {
+      position: relative;
+    }
+    .pastor-photo-frame {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--royal) 100%);
+      border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+      border: 3px solid rgba(212,160,23,0.3);
+    }
+    .pastor-placeholder {
+      text-align: center; color: rgba(255,255,255,0.3);
+    }
+    .pastor-placeholder svg { width: 80px; height: 80px; margin-bottom: 12px; }
+    .pastor-placeholder p { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
+    .pastor-gold-line {
+      position: absolute; bottom: -16px; left: 0; right: 0;
+      height: 4px; background: var(--gold);
+    }
+    .pastor-content { color: var(--white); }
+    .pastor-content .section-tag { color: var(--gold); }
+    .pastor-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 6px;
+    }
+    .pastor-title {
+      color: var(--gold);
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .pastor-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      padding-left: 20px;
+      border-left: 3px solid var(--gold);
+    }
+    .pastor-content p {
+      color: rgba(255,255,255,0.6);
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+
+    /* ── MINISTRIES ── */
+    .ministries {
+      padding: 100px 5%;
+      background: var(--off-white);
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      color: var(--royal-dark);
+      margin-bottom: 12px;
+    }
+    .section-header p {
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .ministries-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .ministry-card {
+      background: var(--white);
+      padding: 36px 28px;
+      border-bottom: 4px solid transparent;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .ministry-card:hover {
+      border-bottom-color: var(--gold);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(26,61,143,0.1);
+    }
+    .ministry-icon {
+      width: 52px; height: 52px;
+      background: rgba(26,61,143,0.08);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+      font-size: 1.4rem;
+    }
+    .ministry-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--royal-dark);
+      margin-bottom: 10px;
+    }
+    .ministry-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .ministry-time {
+      margin-top: 16px;
+      font-size: 0.75rem;
+      color: var(--teal);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    /* ── GALLERY ── */
+    .gallery {
+      padding: 100px 5%;
+    }
+    .gallery-grid {
+      max-width: 1100px;
+      margin: 48px auto 0;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: repeat(2, 220px);
+      gap: 12px;
+    }
+    .gallery-item {
+      background: linear-gradient(135deg, var(--royal) 0%, var(--teal) 100%);
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; transition: opacity 0.3s, transform 0.4s; }
+    .gallery-item:hover img { opacity: 1; transform: scale(1.04); }
+    .g1 { grid-column: span 5; }
+    .g2 { grid-column: span 4; }
+    .g3 { grid-column: span 3; }
+    .g4 { grid-column: span 3; }
+    .g5 { grid-column: span 5; }
+    .g6 { grid-column: span 4; }
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,20,60,0.5) 0%, transparent 60%);
+    }
+    .gallery-label {
+      position: absolute; bottom: 12px; left: 16px;
+      color: var(--white);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ── MEMBER PORTAL PREVIEW ── */
+    .portal-preview {
+      padding: 100px 5%;
+      background: linear-gradient(160deg, var(--off-white) 0%, #e8eef8 100%);
+    }
+    .portal-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .portal-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      color: var(--royal-dark);
+      margin-bottom: 16px;
+    }
+    .portal-content p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+    .portal-features {
+      display: flex; flex-direction: column; gap: 12px;
+      margin-bottom: 32px;
+    }
+    .portal-feature {
+      display: flex; gap: 12px; align-items: center;
+      font-size: 0.9rem; color: var(--muted);
+    }
+    .portal-feature::before {
+      content: '✓';
+      width: 22px; height: 22px;
+      background: var(--teal);
+      color: white;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .portal-mockup {
+      background: var(--royal-dark);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 32px 80px rgba(10,20,60,0.25);
+    }
+    .mockup-bar {
+      background: rgba(255,255,255,0.06);
+      padding: 12px 16px;
+      display: flex; align-items: center; gap: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .mockup-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+    }
+    .mockup-title {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+      flex: 1; text-align: center;
+      letter-spacing: 0.06em;
+    }
+    .mockup-body { padding: 20px; }
+    .mockup-row {
+      display: grid;
+      grid-template-columns: 40px 1fr 80px 70px;
+      gap: 12px;
+      align-items: center;
+      padding: 10px 12px;
+      border-radius: 4px;
+      margin-bottom: 4px;
+      font-size: 0.78rem;
+    }
+    .mockup-row.header {
+      background: rgba(212,160,23,0.15);
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .mockup-row.data {
+      background: rgba(255,255,255,0.04);
+      color: rgba(255,255,255,0.7);
+    }
+    .mockup-row.data:hover { background: rgba(255,255,255,0.08); }
+    .mockup-avatar {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal), var(--royal-light));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem; color: white; font-weight: 600;
+    }
+    .mockup-badge {
+      font-size: 0.65rem;
+      padding: 2px 8px;
+      border-radius: 20px;
+      text-align: center;
+    }
+    .badge-active { background: rgba(13,122,122,0.25); color: #4ee4e4; }
+    .badge-new { background: rgba(212,160,23,0.25); color: var(--gold); }
+
+    /* ── LOCATION ── */
+    .location-section {
+      padding: 80px 5%;
+      background: var(--white);
+    }
+    .location-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+    .location-info h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--royal-dark);
+      margin-bottom: 24px;
+    }
+    .location-detail {
+      display: flex; gap: 16px;
+      margin-bottom: 20px;
+    }
+    .location-icon {
+      width: 40px; height: 40px;
+      background: rgba(26,61,143,0.08);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .location-text strong {
+      display: block;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--royal);
+      margin-bottom: 4px;
+    }
+    .location-text span { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+    .map-placeholder {
+      background: linear-gradient(135deg, #e8eef8, #d8e4f4);
+      border-radius: 4px;
+      height: 320px;
+      display: flex; align-items: center; justify-content: center;
+      border: 2px dashed rgba(26,61,143,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .map-placeholder::after {
+      content: '📍 Cloughpet, Ongole\nAndhra Pradesh — 523001';
+      white-space: pre;
+      text-align: center;
+      color: var(--royal);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--royal-dark);
+      color: rgba(255,255,255,0.6);
+      padding: 60px 5% 32px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-brand p {
+      font-size: 0.88rem;
+      line-height: 1.8;
+      margin-top: 16px;
+      max-width: 280px;
+    }
+    .footer-col h4 {
+      color: var(--white);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .footer-col a {
+      display: block;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 0.88rem;
+      margin-bottom: 10px;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--gold); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.78rem;
+    }
+    .footer-bottom a { color: var(--gold); text-decoration: none; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero-stats { display: none; }
+      .about { grid-template-columns: 1fr; gap: 40px; }
+      .about-content { padding-right: 0; }
+      .pastor-inner { grid-template-columns: 1fr; }
+      .portal-inner { grid-template-columns: 1fr; }
+      .location-inner { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .g1,.g2,.g3,.g4,.g5,.g6 { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="cross-icon"></div>
+    <span>Christ House of Worship<em>Cloughpet, Ongole</em></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">Our Story</a></li>
+    <li><a href="#pastor">Pastor</a></li>
+    <li><a href="#ministries">Ministries</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#location">Location</a></li>
+    <li><a href="portal.html" class="nav-btn">Member Portal</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-cross"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Cloughpet · Ongole · Andhra Pradesh</div>
+    <h1>Christ <span>House</span> of<br>Worship</h1>
+    <p class="hero-sub">Where Every Soul Finds a Home</p>
+    <p class="hero-verse">"For where two or three gather in my name, there am I with them." — Matthew 18:20</p>
+    <div class="hero-actions">
+      <a href="#about" class="btn-primary">Our Story</a>
+      <a href="#location" class="btn-outline">Visit Us</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">2015</div>
+      <div class="stat-label">Founded</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">2022</div>
+      <div class="stat-label">Own Building</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">10+</div>
+      <div class="stat-label">Years of Ministry</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4</div>
+      <div class="stat-label">Active Ministries</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE TIMES -->
+<section class="service-times">
+  <div class="section-tag">Join Us in Worship</div>
+  <h2>Service Schedule</h2>
+  <div class="times-grid">
+    <div class="time-card">
+      <div class="time-day">Sunday</div>
+      <div class="time-name">Morning Worship</div>
+      <div class="time-hour">9:30 AM — Telugu Service</div>
+    </div>
+    <div class="time-card">
+      <div class="time-day">Wednesday</div>
+      <div class="time-name">Prayer Meeting</div>
+      <div class="time-hour">6:30 PM</div>
+    </div>
+    <div class="time-card">
+      <div class="time-day">Friday</div>
+      <div class="time-name">Bible Study</div>
+      <div class="time-hour">6:30 PM</div>
+    </div>
+    <div class="time-card">
+      <div class="time-day">Monthly</div>
+      <div class="time-name">Fasting Prayer</div>
+      <div class="time-hour">First Saturday · 10:00 AM</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-visual">
+    <div class="about-img-main">
+      <img src="https://images.unsplash.com/photo-1555414276-e3d6bb4e3e62?w=600&q=80" alt="Church gathering" />
+    </div>
+    <div class="about-badge-box">
+      <div class="yr">10</div>
+      <div class="yr-label">Years of<br>Ministry</div>
+    </div>
+  </div>
+  <div class="about-content">
+    <div class="section-tag">Our Story</div>
+    <h2>Born from <em>Faith</em>,<br>Built on Prayer</h2>
+    <p>Christ House of Worship was born out of a deep spiritual calling. Founded by Pastor Patra John Calvin, the church began its journey in 2015 in Annavarapadu, Ongole — a small gathering of believers with a great vision.</p>
+    <p>Through years of faithful ministry, the congregation grew steadily. In 2022, God opened the doors to our own church building in Cloughpet, Ongole — a landmark moment in the church's history and a testament to His faithfulness.</p>
+    <p>Today, CHOW stands as a vibrant community of believers committed to worship, discipleship, and community outreach across Ongole and beyond.</p>
+    <div class="about-milestones">
+      <div class="milestone">
+        <div class="milestone-year">2015</div>
+        <div class="milestone-text">Church founded by Pastor Patra John Calvin in Annavarapadu, Ongole</div>
+      </div>
+      <div class="milestone">
+        <div class="milestone-year">2018</div>
+        <div class="milestone-text">Congregation grows — youth and women's ministries established</div>
+      </div>
+      <div class="milestone">
+        <div class="milestone-year">2022</div>
+        <div class="milestone-text">Own church building consecrated in Cloughpet, Ongole</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PASTOR -->
+<section class="pastor-section" id="pastor">
+  <div class="pastor-inner">
+    <div class="pastor-photo">
+      <div class="pastor-photo-frame">
+        <div class="pastor-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          <p>Pastor Photo</p>
+        </div>
+      </div>
+      <div class="pastor-gold-line"></div>
+    </div>
+    <div class="pastor-content">
+      <div class="section-tag">Founding & Senior Pastor</div>
+      <h2>Patra John Calvin</h2>
+      <div class="pastor-title">Senior Pastor · Christ House of Worship</div>
+      <div class="pastor-quote">
+        "Our calling is not just to build a church building — it is to build lives that glorify God in every season."
+      </div>
+      <p>Pastor Patra John Calvin founded Christ House of Worship in 2015 with a heartfelt vision to establish a place where every person — regardless of background — could encounter the living God.</p>
+      <p>His ministry is characterized by deep prayer, expository preaching, and a passion for reaching the unreached in Ongole's tier-2 community. Under his leadership the church has grown from a handful of families to a thriving congregation with its own building and multiple active ministries.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MINISTRIES -->
+<section class="ministries" id="ministries">
+  <div class="section-header">
+    <div class="section-tag">Get Involved</div>
+    <h2>Our Ministries</h2>
+    <p>Every ministry at CHOW exists to help you grow in faith, connect with community, and serve others.</p>
+  </div>
+  <div class="ministries-grid">
+    <div class="ministry-card">
+      <div class="ministry-icon">🙏</div>
+      <h3>Sunday Worship</h3>
+      <p>A weekly celebration of praise, prayer, and the Word — the heartbeat of our congregation in Telugu.</p>
+      <div class="ministry-time">Sundays · 9:30 AM</div>
+    </div>
+    <div class="ministry-card">
+      <div class="ministry-icon">🔥</div>
+      <h3>Prayer Ministry</h3>
+      <p>Intercession and fasting prayer gatherings for breakthrough in families, city, and nation.</p>
+      <div class="ministry-time">Wednesdays · 6:30 PM</div>
+    </div>
+    <div class="ministry-card">
+      <div class="ministry-icon">📖</div>
+      <h3>Bible Study</h3>
+      <p>Systematic study of scripture to build strong foundations in every believer's walk with God.</p>
+      <div class="ministry-time">Fridays · 6:30 PM</div>
+    </div>
+    <div class="ministry-card">
+      <div class="ministry-icon">🌿</div>
+      <h3>Youth Ministry</h3>
+      <p>Empowering the next generation with faith, purpose, and identity in Christ through engaging programs.</p>
+      <div class="ministry-time">Saturdays · 4:00 PM</div>
+    </div>
+    <div class="ministry-card">
+      <div class="ministry-icon">🕊️</div>
+      <h3>Women's Fellowship</h3>
+      <p>A safe space for women to grow spiritually, support one another, and discover their God-given purpose.</p>
+      <div class="ministry-time">Monthly · 2nd Sunday</div>
+    </div>
+    <div class="ministry-card">
+      <div class="ministry-icon">🌱</div>
+      <h3>Outreach & Evangelism</h3>
+      <p>Taking the Gospel into homes, villages, and communities across Ongole and the surrounding region.</p>
+      <div class="ministry-time">Ongoing</div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="section-header">
+    <div class="section-tag">Life at CHOW</div>
+    <h2>Gallery</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item g1">
+      <img src="https://images.unsplash.com/photo-1438232992991-995b671e4437?w=600&q=80" alt="Worship" />
+      <div class="gallery-overlay"></div>
+      <div class="gallery-label">Sunday Worship</div>
+    </div>
+    <div class="gallery-item g2">
+      <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=400&q=80" alt="Prayer" />
+      <div class="gallery-overlay"></div>
+      <div class="gallery-label">Prayer Night</div>
+    </div>
+    <div class="gallery-item g3">
+      <img src="https://images.unsplash.com/photo-1508163223045-1880bc36e222?w=400&q=80" alt="Youth" />
+      <div class="gallery-overlay"></div>
+      <div class="gallery-label">Youth</div>
+    </div>
+    <div class="gallery-item g4">
+      <img src="https://images.unsplash.com/photo-1544928147-79a2dbc1f389?w=400&q=80" alt="Community" />
+      <div class="gallery-overlay"></div>
+      <div class="gallery-label">Community</div>
+    </div>
+    <div class="gallery-item g5">
+      <img src="https://images.unsplash.com/photo-1560328055-e938bb2ed50a?w=600&q=80" alt="Building" />
+      <div class="gallery-overlay"></div>
+      <div class="gallery-label">Our Building</div>
+    </div>
+    <div class="gallery-item g6">
+      <img src="https://images.unsplash.com/photo-1523803326055-9729b9e02e5a?w=400&q=80" alt="Baptism" />
+      <div class="gallery-overlay"></div>
+      <div class="gallery-label">Baptism Service</div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBER PORTAL PREVIEW -->
+<section class="portal-preview" id="portal">
+  <div class="portal-inner">
+    <div class="portal-content">
+      <div class="section-tag">For Pastors & Members</div>
+      <h2>Congregation Management Portal</h2>
+      <p>A secure, easy-to-use portal for the pastor to manage congregation records — member profiles, baptism dates, birthdays, contact details, and more.</p>
+      <div class="portal-features">
+        <div class="portal-feature">Member profiles with photos & personal details</div>
+        <div class="portal-feature">Baptism & membership date tracking</div>
+        <div class="portal-feature">Birthday & anniversary reminders</div>
+        <div class="portal-feature">Ministry department assignments</div>
+        <div class="portal-feature">Export member list (Excel / PDF)</div>
+        <div class="portal-feature">Pastor, Admin & Member access levels</div>
+      </div>
+      <a href="portal.html" class="btn-primary">View Portal Design →</a>
+    </div>
+    <div class="portal-mockup">
+      <div class="mockup-bar">
+        <div class="mockup-dot" style="background:#ff5f57"></div>
+        <div class="mockup-dot" style="background:#febc2e"></div>
+        <div class="mockup-dot" style="background:#28c840"></div>
+        <div class="mockup-title">CHOW · Member Portal</div>
+      </div>
+      <div class="mockup-body">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+          <span style="color:rgba(255,255,255,0.9);font-size:0.9rem;font-family:'Playfair Display',serif;">Congregation</span>
+          <span style="background:var(--gold);color:#0F2660;font-size:0.7rem;padding:4px 12px;border-radius:3px;font-weight:700;">+ Add Member</span>
+        </div>
+        <div class="mockup-row header">
+          <span>#</span><span>Member</span><span>Status</span><span>Baptized</span>
+        </div>
+        <div class="mockup-row data">
+          <div class="mockup-avatar">RK</div>
+          <span>Ravi Kumar</span>
+          <span class="mockup-badge badge-active">Active</span>
+          <span>2018</span>
+        </div>
+        <div class="mockup-row data">
+          <div class="mockup-avatar">SP</div>
+          <span>Sunita Prasad</span>
+          <span class="mockup-badge badge-active">Active</span>
+          <span>2019</span>
+        </div>
+        <div class="mockup-row data">
+          <div class="mockup-avatar">JM</div>
+          <span>James Matthew</span>
+          <span class="mockup-badge badge-new">New</span>
+          <span>2024</span>
+        </div>
+        <div class="mockup-row data">
+          <div class="mockup-avatar">PL</div>
+          <span>Priya Laxmi</span>
+          <span class="mockup-badge badge-active">Active</span>
+          <span>2020</span>
+        </div>
+        <div style="text-align:center;margin-top:16px;font-size:0.72rem;color:rgba(255,255,255,0.25);letter-spacing:0.08em;">
+          SHOWING 4 OF 48 MEMBERS
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location-section" id="location">
+  <div class="location-inner">
+    <div class="location-info">
+      <div class="section-tag">Find Us</div>
+      <h2>Visit Our Church</h2>
+      <div class="location-detail">
+        <div class="location-icon">📍</div>
+        <div class="location-text">
+          <strong>Address</strong>
+          <span>Christ House of Worship<br>Cloughpet, Ongole<br>Andhra Pradesh — 523 001</span>
+        </div>
+      </div>
+      <div class="location-detail">
+        <div class="location-icon">⏰</div>
+        <div class="location-text">
+          <strong>Sunday Service</strong>
+          <span>9:30 AM — Telugu Worship Service</span>
+        </div>
+      </div>
+      <div class="location-detail">
+        <div class="location-icon">📞</div>
+        <div class="location-text">
+          <strong>Contact Pastor</strong>
+          <span>Pastor Patra John Calvin<br>+91 XXXXX XXXXX</span>
+        </div>
+      </div>
+      <div class="location-detail">
+        <div class="location-icon">✉️</div>
+        <div class="location-text">
+          <strong>Email</strong>
+          <span>info@christhouseofworship.org</span>
+        </div>
+      </div>
+    </div>
+    <div class="map-placeholder"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+        <div class="cross-icon" style="width:28px;height:28px;background:var(--gold);clip-path:polygon(40% 0%, 60% 0%, 60% 40%, 100% 40%, 100% 60%, 60% 60%, 60% 100%, 40% 100%, 40% 60%, 0% 60%, 0% 40%, 40% 40%)"></div>
+        <span style="font-family:'Playfair Display',serif;color:white;font-size:1rem;">Christ House of Worship</span>
+      </div>
+      <p>A place of faith, hope, and love in the heart of Ongole since 2015. All are welcome.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a href="#about">Our Story</a>
+      <a href="#pastor">Pastor</a>
+      <a href="#ministries">Ministries</a>
+      <a href="#gallery">Gallery</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="#location">Location</a>
+      <a href="#">Prayer Request</a>
+      <a href="#">New Here?</a>
+      <a href="portal.html">Member Portal</a>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="#">Sunday 9:30 AM</a>
+      <a href="#">Wednesday Prayer</a>
+      <a href="#">Friday Bible Study</a>
+      <a href="#">Monthly Fasting</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Christ House of Worship, Ongole. All rights reserved.</span>
+    <a href="portal.html">Pastor Login →</a>
+  </div>
+</footer>
+
+</body>
+</html>
